@@ -1,19 +1,24 @@
 use dep::std;
+use dep::array_helpers;
 
-fn main(message: [u8; 4], expected_hash: [u8; 32]) {
-    std::println(message);
-    let message_size = 4;
-    std::println(message_size);
-    let hash = std::hash::keccak256(message, message_size);
-    std::println(hash);
-    assert(hash == expected_hash);
+
+fn main(tree_root: pub Field,
+        message_hash: pub [u8; 32],
+        signature: [u8; 64],
+        tree_path: [Field; 1],
+        tree_depth: Field,
+        pub_key_x: [u8; 32],
+        pub_key_y: [u8; 32],
+        ) {
+
+    // 1 - verify ECDSA signature
+    std::ecdsa_secp256k1::verify_signature(pub_key_x, pub_key_y, signature, message_hash);
+    // 
+    let pub_key = array_helpers::u8_32_to_u8_64_unconstrained(pub_key_x, self.pub_key_y);
 }
 
 #[test]
 fn test_main() {
-    let x = [0xa3, 0x75, 0xb2, 0x95];
-    let hash = [0x8d, 0xa6, 0x5b, 0x07, 0x7c, 0x39, 0x50, 0x56, 0xe5, 0x93, 0x6d, 0xd3, 0x03, 0x1d, 0xf6, 0x2c, 0xad, 0x9e, 0xd2, 0xe1, 0x, 0x46, 0x1d, 0x31, 0xdb, 0xfe, 0x8e, 0x99, 0x10, 0x8f, 0x52, 0xf4];
-    main(x, hash);
-    // Uncomment to make test fail
-    // main(1, 1);
+
+
 }
