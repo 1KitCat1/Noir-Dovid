@@ -1,6 +1,8 @@
 [package]
-authors = [""]
-compiler_version = "0.8.0"
+authors = ["kitcat"]
+compiler_version = "0.10.3"
+name = "dovid"
+type = "bin"
 
 [dependencies]
-ecrecover = { tag = "v0.9.0", git = "https://github.com/colinnielsen/ecrecover-noir" }
+ecrecover = { tag = "v0.10.0", git = "https://github.com/colinnielsen/ecrecover-noir" }

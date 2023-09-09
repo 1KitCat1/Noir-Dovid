@@ -1,6 +1,5 @@
 use dep::std;
-use dep::array_helpers;
-
+use dep::ecrecover;
 
 fn main(tree_root: pub Field,
         message_hash: pub [u8; 32],
@@ -34,7 +33,7 @@ fn compute_merkle_root<N>(leaf: Field, index: Field, hash_path: [Field; N]) -> F
             (current, hash_path[i])
          };
 
-      current = std::hash::poseidon::bn254::hash_2([hash_left, hash_right])[0];
+      current = std::hash::poseidon::bn254::hash_2([hash_left, hash_right]);
     };
     current
 }
